@@ -1,0 +1,51 @@
+version: '3.8'
+services:
+  api:
+    build:
+      context: .
+      target: prod
+    container_name: api
+    profiles:
+      - prod
+    ports:
+      - "8080:8080"
+  api-dev:
+    build:
+      context: .
+      target: builder
+    command: "npm run start:dev"
+    container_name: api-dev
+    volumes:
+      - ./:/home/node/app
+    profiles:
+      - dev
+    ports:
+      - "8080:8080"
+  api-test:
+    build:
+      context: .
+      target: builder
+    container_name: api-test
+    volumes:
+      - ./:home/node/app
+    profiles:
+      - test
+    command: "npm run test:e2e"
+
+  database:
+    container_name: projectly-database
+    profiles:
+      - prod
+      - dev
+    image: postgres:14
+    volumes:
+      - projectly_data:/var/lib/postgresql/data
+  database-test:
+    container_name: projectly-database
+    profiles:
+      - test
+    image: postgres:14
+    tmpfs: /var/lib/postgresql/data
+
+volumes:
+  projectly-database: {}
