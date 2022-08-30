@@ -1,21 +1,44 @@
 import { Module } from '@nestjs/common';
 import { SharedModule } from './shared/shared.module';
 import { AppConfigModule } from './config/app-config.module';
-import { ProjectsModule } from './projects/projects.module';
-import { RecruitmentsModule } from './recruitments/recruitments.module';
-import { DeveloperRolesModule } from './developer-roles/developer-roles.module';
-import { TechnologiesModule } from './technologies/technologies.module';
+import { ApiModule } from './api/api.module';
+import { DatabaseModule } from './database/database.module';
+import { ConfigService } from '@nestjs/config';
+import { EnvConfig } from './config';
+import { OgmaInterceptor, OgmaModule } from '@ogma/nestjs-module';
+import { ExpressParser } from '@ogma/platform-express';
+import { APP_FILTER, APP_INTERCEPTOR } from '@nestjs/core';
+import { AppExceptionsFilter } from './shared/filters';
 
 @Module({
   imports: [
     SharedModule,
     AppConfigModule,
-    ProjectsModule,
-    RecruitmentsModule,
-    DeveloperRolesModule,
-    TechnologiesModule,
+    ApiModule,
+    DatabaseModule,
+    OgmaModule.forRootAsync({
+      inject: [ConfigService],
+      useFactory: (config: ConfigService) => ({
+        service: {
+          logLevel: 'ALL',
+          json: config.get(EnvConfig.IsProd),
+        },
+        interceptor: {
+          http: ExpressParser,
+        },
+      }),
+    }),
   ],
   controllers: [],
-  providers: [],
+  providers: [
+    {
+      provide: APP_INTERCEPTOR,
+      useClass: OgmaInterceptor,
+    },
+    {
+      provide: APP_FILTER,
+      useClass: AppExceptionsFilter,
+    },
+  ],
 })
 export class AppModule {}

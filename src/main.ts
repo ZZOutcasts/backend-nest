@@ -1,8 +1,11 @@
-import { NestFactory } from '@nestjs/core';
-import { AppModule } from './app.module';
+import { createApplication } from './app';
+import { EnvConfig } from './config';
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
-  await app.listen(3000);
+  const [app, config, logger] = await createApplication();
+
+  await app.listen(config.get(EnvConfig.Port), async () => {
+    logger.log(`Application running on ${await app.getUrl()}`);
+  });
 }
 bootstrap();

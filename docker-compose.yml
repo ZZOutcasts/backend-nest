@@ -30,6 +30,23 @@ services:
       - docker.env
     ports:
       - "8080:8080"
+  api-repl:
+    build:
+      context: .
+      target: builder
+    command: "npm run start -- --entryFile ./repl"
+    container_name: api-repl
+    depends_on:
+      database:
+        condition: service_healthy
+    volumes:
+      - ./:/home/node/app
+    profiles:
+      - repl
+    env_file:
+      - docker.env
+    ports:
+      - "8080:8080"
   api-test:
     build:
       context: .
@@ -51,9 +68,10 @@ services:
     profiles:
       - prod
       - dev
+      - repl
     image: postgres:14
     healthcheck:
-      test: [ "CMD-SHELL", "pg_isready" ]
+      test: [ "CMD-SHELL", "pg_isready -d $${POSTGRES_DB} -U $${POSTGRES_USER}"]
       interval: 10s
       timeout: 5s
       retries: 5
@@ -70,7 +88,7 @@ services:
     env_file:
       - test.docker.env
     healthcheck:
-      test: [ "CMD-SHELL", "pg_isready" ]
+      test: [ "CMD-SHELL", "pg_isready -d $${POSTGRES_DB} -U $${POSTGRES_USER}"]
       interval: 10s
       timeout: 5s
       retries: 5
