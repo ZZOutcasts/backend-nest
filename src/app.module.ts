@@ -1,20 +1,10 @@
 import { Module } from '@nestjs/common';
 import { SharedModule } from './shared/shared.module';
 import { AppConfigModule } from './config/app-config.module';
-import { ProjectsModule } from './projects/projects.module';
-import { RecruitmentsModule } from './recruitments/recruitments.module';
-import { DeveloperRolesModule } from './developer-roles/developer-roles.module';
-import { TechnologiesModule } from './technologies/technologies.module';
+import { ApiModule } from './api/api.module';
 
 @Module({
-  imports: [
-    SharedModule,
-    AppConfigModule,
-    ProjectsModule,
-    RecruitmentsModule,
-    DeveloperRolesModule,
-    TechnologiesModule,
-  ],
+  imports: [SharedModule, AppConfigModule, ApiModule],
   controllers: [],
   providers: [],
 })
