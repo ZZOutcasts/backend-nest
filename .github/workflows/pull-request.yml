@@ -7,6 +7,8 @@ jobs:
   Install:
     uses: ./.github/workflows/install-deps.yml
   Lint:
+    needs: Install
     uses: ./.github/workflows/lint.yml
   Unit_Test:
+    needs: Lint
     uses: ./.github/workflows/run-unit-tests.yml
