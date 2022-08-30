@@ -3,6 +3,7 @@ on:
 
 jobs:
   Unit_Test:
+    runs-on: ubuntu-latest
     steps:
       - name: Run Unit Tests
         run: npm run test
