@@ -10,6 +10,7 @@ RUN npm run build
 FROM node:gallium-bullseye-slim as runtime
 
 WORKDIR /home/node/app
+RUN mkdir -p /home/node/app/node_modules && chown -R node:node /home/node/app
 ENV NODE_ENV=production
 USER node
 
