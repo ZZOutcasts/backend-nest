@@ -5,8 +5,8 @@ on:
 
 jobs:
   Install:
-    uses: ZZoutcats/backend-nest/.github/workflows/intall-deps.yml@ci/basic-ci-cd
+    uses: ./.github/workflows/intall-deps.yml@ci/basic-ci-cd
   Lint:
-    uses: ZZoutcats/backend-nest/.github/workflows/lint.yml@ci/basic-ci-cd
+    uses: ./.github/workflows/lint.yml@ci/basic-ci-cd
   Unit_Test:
-    uses: ZZoutcats/backend-nest/.github/workflows/run-unit-tests.yml@ci/basic-ci-cd
+    uses: ./.github/workflows/run-unit-tests.yml@ci/basic-ci-cd
