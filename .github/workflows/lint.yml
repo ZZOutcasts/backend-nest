@@ -1,0 +1,12 @@
+on:
+  workflow_call:
+
+jobs:
+  Lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install Dependencies
+        uses: ZZoutcats/backend-nest/.github/workflows/intall-deps.yml@ci/basic-ci-cd
+
+      - name: Lint
+        run: npm run lint

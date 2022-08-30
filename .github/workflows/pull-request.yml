@@ -1,0 +1,18 @@
+on:
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  Install:
+    steps:
+      - name: Install Dependencies
+        uses: ZZoutcats/backend-nest/.github/workflows/intall-deps.yml@ci/basic-ci-cd
+  Lint:
+    steps:
+      - name: Install Dependencies
+        uses: ZZoutcats/backend-nest/.github/workflows/lint.yml@ci/basic-ci-cd
+  Unit_Test:
+    steps:
+      - name: Install Dependencies
+        uses: ZZoutcats/backend-nest/.github/workflows/run-unit-tests.yml@ci/basic-ci-cd

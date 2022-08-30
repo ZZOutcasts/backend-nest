@@ -1,0 +1,11 @@
+on:
+  workflow_call:
+
+jobs:
+  Unit_Test:
+    steps:
+      - name: Install Dependencies
+        uses: ZZoutcats/backend-nest/.github/workflows/intall-deps.yml@ci/basic-ci-cd
+
+      - name: Run Unit Tests
+        run: npm run test
