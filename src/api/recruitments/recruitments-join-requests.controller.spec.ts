@@ -9,7 +9,9 @@ describe('RecruitmentsJoinRequestsController', () => {
       controllers: [RecruitmentsJoinRequestsController],
     }).compile();
 
-    controller = module.get<RecruitmentsJoinRequestsController>(RecruitmentsJoinRequestsController);
+    controller = module.get<RecruitmentsJoinRequestsController>(
+      RecruitmentsJoinRequestsController,
+    );
   });
 
   it('should be defined', () => {

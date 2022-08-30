@@ -4,6 +4,10 @@ import { RecruitmentsInvitationsController } from './recruitments-invitations.co
 import { RecruitmentsJoinRequestsController } from './recruitments-join-requests.controller';
 
 @Module({
-  controllers: [RecruitmentsController, RecruitmentsInvitationsController, RecruitmentsJoinRequestsController]
+  controllers: [
+    RecruitmentsController,
+    RecruitmentsInvitationsController,
+    RecruitmentsJoinRequestsController,
+  ],
 })
 export class RecruitmentsModule {}
