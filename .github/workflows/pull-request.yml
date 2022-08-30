@@ -5,7 +5,7 @@ on:
 
 jobs:
   Install:
-    uses: ./.github/workflows/intall-deps.yml
+    uses: ./.github/workflows/install-deps.yml
   Lint:
     uses: ./.github/workflows/lint.yml
   Unit_Test:
