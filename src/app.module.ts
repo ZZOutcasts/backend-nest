@@ -7,8 +7,9 @@ import { ConfigService } from '@nestjs/config';
 import { EnvConfig } from './config';
 import { OgmaInterceptor, OgmaModule } from '@ogma/nestjs-module';
 import { ExpressParser } from '@ogma/platform-express';
-import { APP_FILTER, APP_INTERCEPTOR } from '@nestjs/core';
+import { APP_FILTER, APP_INTERCEPTOR, APP_PIPE } from '@nestjs/core';
 import { AppExceptionsFilter } from './shared/filters';
+import { ZodValidationPipe } from 'nestjs-zod';
 
 @Module({
   imports: [
@@ -38,6 +39,10 @@ import { AppExceptionsFilter } from './shared/filters';
     {
       provide: APP_FILTER,
       useClass: AppExceptionsFilter,
+    },
+    {
+      provide: APP_PIPE,
+      useClass: ZodValidationPipe,
     },
   ],
 })

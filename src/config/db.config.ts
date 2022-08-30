@@ -5,5 +5,5 @@ export default registerAs('dbConfig', () => ({
   password: process.env.MIKRO_ORM_PASSWORD,
   dbHost: process.env.MIKRO_ORM_HOST,
   dbName: process.env.MIKRO_ORM_NAME,
-  dbPort: parseInt(process.env.MIKRO_ORM_PORT, 10),
+  dbPort: parseInt(process.env.MIKRO_ORM_PORT, 10) || 5432,
 }));

@@ -35,8 +35,7 @@
     "@nestjs/swagger": "^6.1.0",
     "@ogma/nestjs-module": "^4.0.0",
     "@ogma/platform-express": "^4.0.0",
-    "class-transformer": "^0.5.1",
-    "class-validator": "^0.13.2",
+    "nestjs-zod": "^1.2.1",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
     "rxjs": "^7.5.6"
