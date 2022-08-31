@@ -17,6 +17,7 @@
     "start:debug": "nest start --debug --watch",
     "start:prod": "node dist/main",
     "prettier:check": "prettier --check ./**/*.{ts,js,json,*rc}",
+    "prettier:write": "prettier --write ./**/*.{ts,js,json,*rc}",
     "lint": "npm run lint:check && npm run prettier:check",
     "lint:check": "eslint \"{src,apps,libs,test}/**/*.ts\"",
     "lint:fix": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
