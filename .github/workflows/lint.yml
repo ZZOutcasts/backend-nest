@@ -5,6 +5,10 @@ jobs:
   Lint:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
       - name: Install Deps
         uses: ./.github/workflows/install-deps.yml
       - name: Lint
