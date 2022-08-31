@@ -5,6 +5,7 @@ jobs:
   Install:
     uses: ./.github/workflows/install-deps.yml
   Lint:
+    needs: Install
     runs-on: ubuntu-latest
     steps:
 #      - name: Checkout
