@@ -11,9 +11,9 @@ export class TechnologyRepository extends EntityRepository<Technology> {
   }
 
   /**
-   * @description perform a text search on technologiesApi
+   * @description perform a text search on technologies
    */
   public searchByName(name: string): Promise<Technology[]> {
-    return this.find({ name: { $like: name } });
+    return this.find({ name: { $re: name } });
   }
 }
