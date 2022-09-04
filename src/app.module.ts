@@ -9,7 +9,7 @@ import { OgmaInterceptor, OgmaModule } from '@ogma/nestjs-module';
 import { ExpressParser } from '@ogma/platform-express';
 import { APP_FILTER, APP_INTERCEPTOR, APP_PIPE } from '@nestjs/core';
 import { AppExceptionsFilter } from './shared/filters';
-import { ZodValidationPipe } from 'nestjs-zod';
+import { ZodValidationPipe } from '@anatine/zod-nestjs';
 
 @Module({
   imports: [

@@ -2,7 +2,7 @@ import { Module } from '@nestjs/common';
 import { ProjectsModule } from './projects/projects.module';
 import { RecruitmentsModule } from './recruitments/recruitments.module';
 import { DeveloperRolesModule } from './developer-roles/developer-roles.module';
-import { TechnologiesModule } from './technologies/technologies.module';
+import { TechnologiesApiModule } from './technologiesApi/technologiesApi.module';
 import { DomainModule } from '../domain/domain.module';
 
 @Module({
@@ -10,7 +10,7 @@ import { DomainModule } from '../domain/domain.module';
     ProjectsModule,
     RecruitmentsModule,
     DeveloperRolesModule,
-    TechnologiesModule,
+    TechnologiesApiModule,
     DomainModule,
   ],
 })

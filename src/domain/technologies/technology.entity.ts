@@ -24,6 +24,7 @@ export class Technology {
 
   @Index()
   @Unique()
+  @Property()
   name: string;
 
   @Property()

@@ -24,6 +24,7 @@
     "test:e2e": "jest --config ./test/jest-e2e.json"
   },
   "dependencies": {
+    "@anatine/zod-nestjs": "^1.7.4",
     "@mikro-orm/core": "^5.3.1",
     "@mikro-orm/nestjs": "^5.1.1",
     "@mikro-orm/postgresql": "^5.3.1",
@@ -36,13 +37,13 @@
     "@nestjs/swagger": "^6.1.0",
     "@ogma/nestjs-module": "^4.0.0",
     "@ogma/platform-express": "^4.0.0",
-    "nestjs-zod": "^1.2.1",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
     "rxjs": "^7.5.6",
     "ts-to-zod": "^1.13.1"
   },
   "devDependencies": {
+    "@mikro-orm/cli": "^5.4.0",
     "@nestjs/cli": "^9.1.1",
     "@nestjs/schematics": "^9.0.1",
     "@nestjs/testing": "^9.0.11",

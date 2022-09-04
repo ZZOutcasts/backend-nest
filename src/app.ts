@@ -4,7 +4,7 @@ import { INestApplication } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { OgmaService } from '@ogma/nestjs-module';
-import { patchNestJsSwagger } from 'nestjs-zod';
+import { patchNestjsSwagger } from '@anatine/zod-nestjs';
 
 export async function createApplication(): Promise<
   [INestApplication, ConfigService, OgmaService]
@@ -14,7 +14,7 @@ export async function createApplication(): Promise<
   const logger = app.get<OgmaService>(OgmaService);
 
   const swaggerConfig = new DocumentBuilder().setTitle('Projectly API').build();
-  patchNestJsSwagger();
+  patchNestjsSwagger();
 
   const document = SwaggerModule.createDocument(app, swaggerConfig);
 

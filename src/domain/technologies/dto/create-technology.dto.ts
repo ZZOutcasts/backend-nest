@@ -1,8 +1,6 @@
 import { TechnologySchema } from '../technology.entity';
-import { createZodDto } from 'nestjs-zod';
-import { OmitType } from '@nestjs/mapped-types';
+import { createZodDto } from '@anatine/zod-nestjs';
 
-export class CreateTechnologyDto extends OmitType(
-  createZodDto(TechnologySchema),
-  ['id'],
+export class CreateTechnologyDto extends createZodDto(
+  TechnologySchema.omit({ id: true }),
 ) {}

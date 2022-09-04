@@ -1,0 +1,97 @@
+version: '3.8'
+services:
+  api:
+    build:
+      context: .
+    container_name: api
+    depends_on:
+      database:
+        condition: service_healthy
+    profiles:
+      - prod
+    env_file:
+      - docker.env
+    ports:
+      - "8080:8080"
+  api-dev:
+    build:
+      context: .
+      target: builder
+    command: "npm run start:dev"
+    container_name: api-dev
+    depends_on:
+      database:
+        condition: service_healthy
+    volumes:
+      - ./:/home/node/app
+    profiles:
+      - dev
+    env_file:
+      - docker.env
+    ports:
+      - "8080:8080"
+  api-repl:
+    build:
+      context: .
+      target: builder
+    command: "npm run start -- --entryFile ./repl"
+    container_name: api-repl
+    depends_on:
+      database:
+        condition: service_healthy
+    volumes:
+      - ./:/home/node/app
+    profiles:
+      - repl
+    env_file:
+      - docker.env
+    ports:
+      - "8080:8080"
+  api-test:
+    build:
+      context: .
+      target: builder
+    container_name: api-test
+    depends_on:
+      database-test:
+        condition: service_healthy
+    volumes:
+      - ./:home/node/app
+    profiles:
+      - test
+    env_file:
+      - test.docker.env
+    command: "npm run test:e2e"
+
+  database:
+    container_name: projectly-database
+    profiles:
+      - prod
+      - dev
+      - repl
+    image: postgres:14
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -d $${POSTGRES_DB} -U $${POSTGRES_USER}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    env_file:
+      - docker.env
+    volumes:
+      - projectly_data:/var/lib/postgresql/data
+  database-test:
+    container_name: projectly-database
+    profiles:
+      - test
+    image: postgres:14
+    tmpfs: /var/lib/postgresql/data
+    env_file:
+      - test.docker.env
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -d $${POSTGRES_DB} -U $${POSTGRES_USER}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  projectly_data: {}
