@@ -4,6 +4,7 @@ import {
   Delete,
   Get,
   Param,
+  ParseIntPipe,
   Post,
   Put,
   Query,
@@ -17,17 +18,12 @@ export class TechnologiesApiController {
   constructor(private technologyService: TechnologyService) {}
 
   @Get()
-  public async getTechnologies(@Query('searchQuery') searchQuery: string) {
-    return this.technologyService.searchTechnologiesByName(searchQuery);
-  }
-
-  @Get('/name/:name')
-  public async getTechnologyByName(@Param('name') name: string) {
-    return this.technologyService.getTechnologyByName(name);
+  public async getTechnologies(@Query('name') name: string) {
+    return this.technologyService.searchTechnologiesByName(name);
   }
 
   @Get('/:id')
-  public async getTechnologyById(@Param('id') id: number) {
+  public async getTechnologyById(@Param('id', ParseIntPipe) id: number) {
     return this.technologyService.getTechnologyById(id);
   }
 
@@ -40,7 +36,7 @@ export class TechnologiesApiController {
 
   @Put('/:id')
   public async updateTechnology(
-    @Param('id') id: number,
+    @Param('id', ParseIntPipe) id: number,
     @Body() updateTechnologyDto: UpdateTechnologyDto,
   ) {
     return await this.technologyService.updateTechnology(
@@ -50,7 +46,7 @@ export class TechnologiesApiController {
   }
 
   @Delete('/:id')
-  public async deleteTechnology(@Param('id') id: number) {
+  public async deleteTechnology(@Param('id', ParseIntPipe) id: number) {
     return this.technologyService.deleteTechnology(id);
   }
 }

@@ -6,7 +6,7 @@ import {
   Post,
 } from '@nestjs/common';
 
-@Controller('projects/:projectId/technologiesApi')
+@Controller('projects/:projectId/technologies')
 export class ProjectsTechnologiesController {
   @Get()
   public async getTechnologies() {
