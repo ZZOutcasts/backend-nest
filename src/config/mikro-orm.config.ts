@@ -6,6 +6,7 @@ const logger = new ConsoleLogger('MikroORM');
 
 const config: Options = {
   type: 'postgresql',
+  dbName: 'projectly',
   entities: ['dist/**/*.entity.js'],
   entitiesTs: ['src/**/*.entity.ts'],
   debug: true,

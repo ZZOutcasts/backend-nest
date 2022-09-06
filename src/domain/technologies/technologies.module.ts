@@ -8,7 +8,7 @@ import { MikroOrmModule } from '@mikro-orm/nestjs';
   imports: [
     OgmaModule.forFeatures([TechnologyService]),
     MikroOrmModule.forFeature({
-      entities: [Technology /* other entities */],
+      entities: [Technology],
     }),
   ],
   providers: [TechnologyService],

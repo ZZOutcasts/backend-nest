@@ -12,6 +12,7 @@ import { TechnologyRepository } from './technology.repository';
 export const TechnologySchema = z.object({
   id: z.number(),
   name: z.string().min(1),
+  avatarUrl: z.string().min(1),
   description: z.string().optional(),
 });
 
