@@ -1,4 +1,6 @@
-import { PartialType } from '@nestjs/mapped-types';
-import { CreateTechnologyDto } from './create-technology.dto';
+import { createZodDto } from '@anatine/zod-nestjs';
+import { TechnologySchema } from '../technology.entity';
 
-export class UpdateTechnologyDto extends PartialType(CreateTechnologyDto) {}
+export class UpdateTechnologyDto extends createZodDto(
+  TechnologySchema.omit({ id: true }).deepPartial(),
+) {}
