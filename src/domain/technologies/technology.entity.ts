@@ -28,5 +28,8 @@ export class Technology {
   name: string;
 
   @Property()
+  avatarUrl: string;
+
+  @Property()
   description: string;
 }
