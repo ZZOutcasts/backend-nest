@@ -18,7 +18,7 @@
     "start:prod": "node dist/main",
     "migrations:create": "mikro-orm migration:create",
     "migrations:up": "mikro-orm migrations:up",
-    "prettier:check": "prettier --check ./**/*.{ts,js,json,*rc}",
+    "prettier:check": "prettier --check ./**/*.{ts,js}",
     "prettier:write": "prettier --write ./**/*.{ts,js,json,*rc}",
     "lint": "npm run lint:check && npm run prettier:check",
     "lint:check": "eslint \"{src,apps,libs,test}/**/*.ts\"",
