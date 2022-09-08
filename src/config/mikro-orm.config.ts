@@ -1,8 +1,12 @@
 import { MikroOrmModuleOptions as Options } from '@mikro-orm/nestjs';
-import { ConsoleLogger, NotFoundException } from '@nestjs/common';
+import { NotFoundException } from '@nestjs/common';
 import { TsMorphMetadataProvider } from '@mikro-orm/reflection';
+import { Ogma } from '@ogma/logger';
 
-const logger = new ConsoleLogger('MikroORM');
+const logger = new Ogma({
+  context: 'MikroORM',
+  logLevel: 'ALL',
+});
 
 const config: Options = {
   type: 'postgresql',
