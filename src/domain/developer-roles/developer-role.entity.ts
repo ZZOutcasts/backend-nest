@@ -12,7 +12,7 @@ import { DeveloperRoleRepository } from './developer-role.repository';
 export const DeveloperRoleSchema = z.object({
   id: z.number(),
   name: z.string().min(1),
-  avatarUrl: z.string().min(1),
+  icon: z.string().min(1),
   description: z.string().optional(),
 });
 
@@ -29,7 +29,7 @@ export class DeveloperRole {
   name: string;
 
   @Property()
-  avatarUrl: string;
+  icon: string;
 
   @Property()
   description: string;

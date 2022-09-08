@@ -1,5 +1,6 @@
 import {
   Entity,
+  EntityDTO,
   EntityRepositoryType,
   Index,
   PrimaryKey,
@@ -12,7 +13,7 @@ import { TechnologyRepository } from './technology.repository';
 export const TechnologySchema = z.object({
   id: z.number(),
   name: z.string().min(1),
-  avatarUrl: z.string().min(1),
+  icon: z.string().min(1),
   description: z.string().optional(),
 });
 
@@ -29,7 +30,7 @@ export class Technology {
   name: string;
 
   @Property()
-  avatarUrl: string;
+  icon: string;
 
   @Property()
   description: string;

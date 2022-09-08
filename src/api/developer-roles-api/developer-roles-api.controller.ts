@@ -12,10 +12,15 @@ import {
 import { DeveloperRoleService } from '../../domain/developer-roles/developer-role.service';
 import { CreateDeveloperRoleDto } from '../../domain/developer-roles/dto/create-developer-role.dto';
 import { UpdateDeveloperRoleDto } from '../../domain/developer-roles/dto/update-developer-role.dto';
+import { OgmaLogger, OgmaService } from '@ogma/nestjs-module';
 
 @Controller('roles')
 export class DeveloperRolesApiController {
-  constructor(private developerRoleService: DeveloperRoleService) {}
+  constructor(
+    @OgmaLogger(DeveloperRolesApiController)
+    private readonly logger: OgmaService,
+    private readonly developerRoleService: DeveloperRoleService,
+  ) {}
 
   @Get()
   public async getDeveloperRoles(@Query('name') name: string) {

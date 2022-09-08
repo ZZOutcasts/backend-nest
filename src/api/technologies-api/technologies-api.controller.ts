@@ -1,5 +1,6 @@
 import {
   Body,
+  ConsoleLogger,
   Controller,
   Delete,
   Get,
@@ -12,18 +13,29 @@ import {
 import { CreateTechnologyDto } from '../../domain/technologies/dto/create-technology.dto';
 import { TechnologyService } from '../../domain/technologies/technology.service';
 import { UpdateTechnologyDto } from '../../domain/technologies/dto/update-technology.dto';
+import { OgmaLogger, OgmaService } from '@ogma/nestjs-module';
+import { ApiOkResponse, ApiTags } from '@nestjs/swagger';
+import { EntityDTO } from '@mikro-orm/core';
+import { Technology } from '../../domain/technologies/technology.entity';
 
+@ApiTags('Technologies')
 @Controller('technologies')
 export class TechnologiesApiController {
-  constructor(private technologyService: TechnologyService) {}
+  constructor(
+    @OgmaLogger(TechnologiesApiController) private readonly logger: OgmaService,
+    private readonly technologyService: TechnologyService,
+  ) {}
 
   @Get()
   public async getTechnologies(@Query('name') name: string) {
     return this.technologyService.searchTechnologiesByName(name);
   }
 
+  @ApiOkResponse({ type: Technology })
   @Get('/:id')
-  public async getTechnologyById(@Param('id', ParseIntPipe) id: number) {
+  public async getTechnologyById(
+    @Param('id', ParseIntPipe) id: number,
+  ): Promise<Technology> {
     return this.technologyService.getTechnologyById(id);
   }
 
