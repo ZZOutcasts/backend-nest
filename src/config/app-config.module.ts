@@ -1,8 +1,19 @@
 import { Global, Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import * as z from 'zod';
+import ms from 'ms';
 import dbConfig from './db.config';
 import envConfig from './env.config';
+
+const checkIfStingIsmsFormat = (string) => {
+  try {
+    ms(string);
+  } catch (err) {
+    console.error(err);
+    return false;
+  }
+  return true;
+};
 
 @Global()
 @Module({
@@ -28,6 +39,20 @@ import envConfig from './env.config';
           NODE_ENV: z
             .enum(['development', 'production', 'test'])
             .default('development'),
+          JWT_AT_SECRET: z.string().min(24),
+          JWT_RT_SECRET: z.string().min(24),
+          JWT_AT_EXPIRATION: z
+            .string()
+            .refine(
+              checkIfStingIsmsFormat,
+              'JWT_AT_EXPIRATION is not a valid ms string',
+            ),
+          JWT_RT_EXPIRATION: z
+            .string()
+            .refine(
+              checkIfStingIsmsFormat,
+              'JWT_RT_EXPIRATION is not a valid ms string',
+            ),
         });
 
         return { validate: schema.parse };

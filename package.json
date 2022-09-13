@@ -32,22 +32,26 @@
   "dependencies": {
     "@anatine/zod-nestjs": "^1.7.4",
     "@mikro-orm/core": "~5.2.1",
+    "@mikro-orm/migrations": "~5.2.1",
     "@mikro-orm/nestjs": "~5.1.1",
     "@mikro-orm/postgresql": "~5.2.1",
-    "@mikro-orm/migrations": "~5.2.1",
     "@mikro-orm/reflection": "~5.2.1",
     "@nestjs/common": "^9.0.11",
     "@nestjs/config": "^2.2.0",
     "@nestjs/core": "^9.0.11",
+    "@nestjs/jwt": "^9.0.0",
     "@nestjs/mapped-types": "^1.1.0",
     "@nestjs/platform-express": "^9.0.11",
     "@nestjs/swagger": "^6.1.0",
     "@ogma/nestjs-module": "^4.0.0",
     "@ogma/platform-express": "^4.0.0",
+    "argon2": "^0.29.1",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
     "rxjs": "^7.5.6",
-    "ts-to-zod": "^1.13.1"
+    "slug": "^8.0.0",
+    "ts-to-zod": "^1.13.1",
+    "uuid": "^9.0.0"
   },
   "devDependencies": {
     "@mikro-orm/cli": "~5.2.0",
