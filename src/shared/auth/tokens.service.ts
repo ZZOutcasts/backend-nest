@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { User } from '../../users/entities/user.entity';
+import { User } from '../users/user.entity';
 import { JwtService } from '@nestjs/jwt';
 import { OgmaLogger, OgmaService } from '@ogma/nestjs-module';
 import { ConfigService } from '@nestjs/config';

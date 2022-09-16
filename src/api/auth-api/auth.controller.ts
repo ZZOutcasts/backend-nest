@@ -4,7 +4,7 @@ import {
   NotImplementedException,
   Post,
 } from '@nestjs/common';
-import { AuthService } from '../services';
+import { AuthService } from '../../shared/auth/auth.service';
 
 @Controller('auth')
 export class AuthController {

@@ -6,9 +6,9 @@ import {
   Post,
   Put,
 } from '@nestjs/common';
-import { UsersService } from '../services';
+import { UsersService } from '../../../shared/users/users.service';
 
-@Controller('users')
+@Controller('users-api')
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 

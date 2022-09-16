@@ -5,7 +5,6 @@ import {
   UnauthorizedException,
 } from '@nestjs/common';
 import { Request, Response } from 'express';
-import { TokensService } from '../services';
 import {
   CookieNames,
   JwtAtPayload,
@@ -14,7 +13,8 @@ import {
   TokenPair,
 } from '../types';
 import { OgmaLogger, OgmaService } from '@ogma/nestjs-module';
-import { AuthService } from '../../users/services';
+import { AuthService } from './auth.service';
+import { TokensService } from './tokens.service';
 
 @Injectable()
 export class UserLoggedInGuard implements CanActivate {

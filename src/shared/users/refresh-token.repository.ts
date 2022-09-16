@@ -1,9 +1,9 @@
 import { EntityRepository } from '@mikro-orm/postgresql';
 import { RefreshTokenEntity } from './refresh-token.entity';
 import { ConfigService } from '@nestjs/config';
-import { RefreshToken } from '../../shared/types';
+import { RefreshToken } from '../types';
 
-interface OverrideRefreshTokenData {
+export interface OverrideRefreshTokenData {
   oldRt: RefreshTokenEntity;
   newRt: RefreshToken;
   validityPeriod: number;

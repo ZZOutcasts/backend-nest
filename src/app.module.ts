@@ -10,7 +10,6 @@ import { ExpressParser } from '@ogma/platform-express';
 import { APP_FILTER, APP_INTERCEPTOR, APP_PIPE } from '@nestjs/core';
 import { AppExceptionsFilter } from './shared/filters';
 import { ZodValidationPipe } from '@anatine/zod-nestjs';
-import { UsersModule } from './users/users.module';
 
 @Module({
   imports: [
@@ -30,7 +29,6 @@ import { UsersModule } from './users/users.module';
         },
       }),
     }),
-    UsersModule,
   ],
   controllers: [],
   providers: [

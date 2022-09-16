@@ -1,4 +1,4 @@
-import { AuthRole } from '../../users/entities/auth-role.enum';
+import { AuthRole } from '../users/auth-role.enum';
 
 export interface JwtAtPayload {
   sub: string;
