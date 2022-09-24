@@ -1,1 +1,94 @@
-{"data":{"propertyOrder":{},"properties":{"id":{"name":"id","reference":"scalar","primary":true,"type":"number"},"value":{"name":"value","reference":"scalar","getter":false,"setter":false,"type":"string"},"user":{"name":"user","reference":"m:1","cascade":["persist"],"type":"User","nullable":false},"expiresAt":{"name":"expiresAt","reference":"scalar","nullable":true,"getter":false,"setter":false}},"props":[{"name":"id","reference":"scalar","primary":true,"type":"number"},{"name":"value","reference":"scalar","getter":false,"setter":false,"type":"string"},{"name":"user","reference":"m:1","cascade":["persist"],"type":"User","nullable":false},{"name":"expiresAt","reference":"scalar","nullable":true,"getter":false,"setter":false}],"primaryKeys":["id"],"filters":{},"hooks":{},"indexes":[{"properties":"value"}],"uniques":[{"properties":"value"}],"checks":[],"concurrencyCheckKeys":{},"className":"RefreshTokenEntity","path":"./dist/shared/users/refresh-token.entity.js","name":"RefreshTokenEntity","abstract":false,"constructorParams":[],"toJsonParams":[],"useCache":true,"compositePK":false,"relations":[{"name":"user","reference":"m:1","cascade":["persist"],"type":"User","nullable":false}],"collection":"refresh_token_entity"},"origin":"./dist/shared/users/refresh-token.entity.js","hash":"51d8b3050dd37441d5cfbce29446299d","version":"5.2.4"}
+{
+  "data": {
+    "propertyOrder": {},
+    "properties": {
+      "id": {
+        "name": "id",
+        "reference": "scalar",
+        "primary": true,
+        "type": "number"
+      },
+      "value": {
+        "name": "value",
+        "reference": "scalar",
+        "getter": false,
+        "setter": false,
+        "type": "string"
+      },
+      "user": {
+        "name": "user",
+        "reference": "m:1",
+        "cascade": ["persist"],
+        "type": "User",
+        "nullable": false
+      },
+      "expiresAt": {
+        "name": "expiresAt",
+        "reference": "scalar",
+        "nullable": true,
+        "getter": false,
+        "setter": false,
+        "type": "Date"
+      }
+    },
+    "props": [
+      {
+        "name": "id",
+        "reference": "scalar",
+        "primary": true,
+        "type": "number"
+      },
+      {
+        "name": "value",
+        "reference": "scalar",
+        "getter": false,
+        "setter": false,
+        "type": "string"
+      },
+      {
+        "name": "user",
+        "reference": "m:1",
+        "cascade": ["persist"],
+        "type": "User",
+        "nullable": false
+      },
+      {
+        "name": "expiresAt",
+        "reference": "scalar",
+        "nullable": true,
+        "getter": false,
+        "setter": false,
+        "type": "Date"
+      }
+    ],
+    "primaryKeys": ["id"],
+    "filters": {},
+    "hooks": {},
+    "indexes": [{ "properties": "value" }],
+    "uniques": [{ "properties": "value" }],
+    "checks": [],
+    "concurrencyCheckKeys": {},
+    "className": "RefreshTokenEntity",
+    "path": "./dist/shared/users/db/refresh-token.entity.js",
+    "name": "RefreshTokenEntity",
+    "abstract": false,
+    "constructorParams": [],
+    "toJsonParams": [],
+    "extends": "TimestampedEntity",
+    "useCache": true,
+    "compositePK": false,
+    "relations": [
+      {
+        "name": "user",
+        "reference": "m:1",
+        "cascade": ["persist"],
+        "type": "User",
+        "nullable": false
+      }
+    ],
+    "collection": "refresh_token_entity"
+  },
+  "origin": "./dist/shared/users/db/refresh-token.entity.js",
+  "hash": "ba972c293457b9dd7ee5f53341b359a1",
+  "version": "5.2.4"
+}

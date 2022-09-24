@@ -14,20 +14,21 @@ import { UserRepository } from './user.repository';
 import { v4 } from 'uuid';
 import argon from 'argon2';
 import slug from 'slug';
-import { AuthRole } from './auth-role.enum';
+import { AuthRole } from '../types/auth-role.enum';
 import { RefreshTokenEntity } from './refresh-token.entity';
 import z from 'zod';
+import { TimestampedEntity } from '../../../database';
 
 export const UserSchema = z.object({
   id: z.string().uuid(),
   username: z.string().min(3),
-  slug: z.string(),
   email: z.string().email(),
+  password: z.string().min(8),
   authRole: z.nativeEnum(AuthRole),
 });
 
 @Entity({ customRepository: () => UserRepository })
-export class User {
+export class User extends TimestampedEntity {
   [EntityRepositoryType]?: UserRepository;
 
   @PrimaryKey()
@@ -51,7 +52,17 @@ export class User {
   @Property({ hidden: true })
   private password?: string;
 
-  @OneToMany(() => RefreshTokenEntity, (token) => token.user)
+  //override default behaviour
+  @Property()
+  updatedAt = new Date();
+
+  @Property()
+  lastLoggedInAt: Date;
+
+  @Property()
+  lastLogout: Date;
+
+  @OneToMany(() => RefreshTokenEntity, (token) => token.user, { hidden: true })
   refreshTokens = new Collection<RefreshTokenEntity>(this);
 
   @Property()
@@ -62,6 +73,18 @@ export class User {
 
   async changePassword(newPassword) {
     this.password = await argon.hash(newPassword);
+  }
+
+  onUpdate() {
+    this.updatedAt = new Date();
+  }
+
+  onLoginSuccess() {
+    this.lastLoggedInAt = new Date();
+  }
+
+  onLogout() {
+    this.lastLogout = new Date();
   }
 
   async comparePassword(plainPassword) {

@@ -1,7 +1,6 @@
 import { EntityRepository } from '@mikro-orm/postgresql';
 import { RefreshTokenEntity } from './refresh-token.entity';
-import { ConfigService } from '@nestjs/config';
-import { RefreshToken } from '../types';
+import { RefreshToken } from '../../types';
 
 export interface OverrideRefreshTokenData {
   oldRt: RefreshTokenEntity;
@@ -10,14 +9,20 @@ export interface OverrideRefreshTokenData {
 }
 
 export class RefreshTokenRepository extends EntityRepository<RefreshTokenEntity> {
-  public async overrideRefreshToken({
+  public async updateRefreshToken({
     oldRt,
     newRt,
     validityPeriod,
-  }: OverrideRefreshTokenData) {
+  }: OverrideRefreshTokenData): Promise<RefreshTokenEntity> {
     this.assign(oldRt, {
       value: newRt,
       expiresAt: new Date(Date.now() + validityPeriod),
     });
+    await this.persistAndFlush(oldRt);
+    return oldRt;
+  }
+
+  public async findByValue(value: RefreshToken): Promise<RefreshTokenEntity> {
+    return this.findOneOrFail({ value });
   }
 }

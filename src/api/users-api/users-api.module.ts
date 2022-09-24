@@ -1,5 +1,5 @@
 import { Module } from '@nestjs/common';
-import { UsersController } from './controllers';
+import { UsersController } from './users.controller';
 import { OgmaModule } from '@ogma/nestjs-module';
 
 @Module({

@@ -1,1 +1,84 @@
-{"data":{"propertyOrder":{},"properties":{"id":{"name":"id","reference":"scalar","primary":true,"type":"number"},"name":{"name":"name","reference":"scalar","getter":false,"setter":false,"type":"string"},"icon":{"name":"icon","reference":"scalar","getter":false,"setter":false,"type":"string"},"description":{"name":"description","reference":"scalar","getter":false,"setter":false,"type":"string"}},"props":[{"name":"id","reference":"scalar","primary":true,"type":"number"},{"name":"name","reference":"scalar","getter":false,"setter":false,"type":"string"},{"name":"icon","reference":"scalar","getter":false,"setter":false,"type":"string"},{"name":"description","reference":"scalar","getter":false,"setter":false,"type":"string"}],"primaryKeys":["id"],"filters":{},"hooks":{},"indexes":[{"properties":"name"}],"uniques":[{"properties":"name"}],"checks":[],"concurrencyCheckKeys":{},"className":"DeveloperRole","path":"./dist/domain/developer-roles/developer-role.entity.js","name":"DeveloperRole","abstract":false,"constructorParams":[],"toJsonParams":[],"useCache":true,"compositePK":false,"relations":[],"collection":"developer_role"},"origin":"./dist/domain/developer-roles/developer-role.entity.js","hash":"3627d1673004a8d7a5026fbd06a71a06","version":"5.2.4"}
+{
+  "data": {
+    "propertyOrder": {},
+    "properties": {
+      "id": {
+        "name": "id",
+        "reference": "scalar",
+        "primary": true,
+        "type": "number"
+      },
+      "name": {
+        "name": "name",
+        "reference": "scalar",
+        "getter": false,
+        "setter": false,
+        "type": "string"
+      },
+      "icon": {
+        "name": "icon",
+        "reference": "scalar",
+        "getter": false,
+        "setter": false,
+        "type": "string"
+      },
+      "description": {
+        "name": "description",
+        "reference": "scalar",
+        "getter": false,
+        "setter": false,
+        "type": "string"
+      }
+    },
+    "props": [
+      {
+        "name": "id",
+        "reference": "scalar",
+        "primary": true,
+        "type": "number"
+      },
+      {
+        "name": "name",
+        "reference": "scalar",
+        "getter": false,
+        "setter": false,
+        "type": "string"
+      },
+      {
+        "name": "icon",
+        "reference": "scalar",
+        "getter": false,
+        "setter": false,
+        "type": "string"
+      },
+      {
+        "name": "description",
+        "reference": "scalar",
+        "getter": false,
+        "setter": false,
+        "type": "string"
+      }
+    ],
+    "primaryKeys": ["id"],
+    "filters": {},
+    "hooks": {},
+    "indexes": [{ "properties": "name" }],
+    "uniques": [{ "properties": "name" }],
+    "checks": [],
+    "concurrencyCheckKeys": {},
+    "className": "DeveloperRole",
+    "path": "./dist/domain/developer-roles/developer-role.entity.js",
+    "name": "DeveloperRole",
+    "abstract": false,
+    "constructorParams": [],
+    "toJsonParams": [],
+    "extends": "TimestampedEntity",
+    "useCache": true,
+    "compositePK": false,
+    "relations": [],
+    "collection": "developer_role"
+  },
+  "origin": "./dist/domain/developer-roles/developer-role.entity.js",
+  "hash": "58c7840699043684c9020d87d026bf7f",
+  "version": "5.2.4"
+}

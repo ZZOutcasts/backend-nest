@@ -1,5 +1,4 @@
 import {
-  DateType,
   Entity,
   EntityRepositoryType,
   Index,
@@ -9,11 +8,11 @@ import {
   Unique,
 } from '@mikro-orm/core';
 import { User } from './user.entity';
-import { UserRepository } from './user.repository';
 import { RefreshTokenRepository } from './refresh-token.repository';
+import { TimestampedEntity } from '../../../database';
 
 @Entity({ customRepository: () => RefreshTokenRepository })
-export class RefreshTokenEntity {
+export class RefreshTokenEntity extends TimestampedEntity {
   [EntityRepositoryType]?: RefreshTokenRepository;
 
   @PrimaryKey()
@@ -27,6 +26,6 @@ export class RefreshTokenEntity {
   @ManyToOne()
   user!: User;
 
-  @Property({ type: DateType, nullable: true })
+  @Property({ nullable: true })
   expiresAt: Date;
 }

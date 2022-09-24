@@ -1,16 +1,16 @@
 import { Injectable } from '@nestjs/common';
-import { User } from '../users/user.entity';
+import { User } from '../db';
 import { JwtService } from '@nestjs/jwt';
 import { OgmaLogger, OgmaService } from '@ogma/nestjs-module';
 import { ConfigService } from '@nestjs/config';
-import { JwtConfig } from '../../config';
+import { JwtConfig } from '../../../config';
 import {
   AccessToken,
   JwtAtPayload,
   JwtRtPayload,
   RefreshToken,
   TokenPair,
-} from '../types';
+} from '../../types';
 
 @Injectable()
 export class TokensService {
@@ -31,7 +31,7 @@ export class TokensService {
 
   public async checkToken<T extends JwtAtPayload | JwtRtPayload>(
     token: string,
-  ): Promise<T> {
+  ): Promise<T | null> {
     return await this.jwtService.verifyAsync<T>(token);
   }
 

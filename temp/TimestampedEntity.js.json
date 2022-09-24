@@ -1,0 +1,54 @@
+{
+  "data": {
+    "propertyOrder": {},
+    "properties": {
+      "createdAt": {
+        "name": "createdAt",
+        "reference": "scalar",
+        "getter": false,
+        "setter": false,
+        "type": "Date"
+      },
+      "updatedAt": {
+        "name": "updatedAt",
+        "reference": "scalar",
+        "getter": false,
+        "setter": false,
+        "type": "Date"
+      }
+    },
+    "props": [
+      {
+        "name": "createdAt",
+        "reference": "scalar",
+        "getter": false,
+        "setter": false,
+        "type": "Date"
+      },
+      {
+        "name": "updatedAt",
+        "reference": "scalar",
+        "getter": false,
+        "setter": false,
+        "type": "Date"
+      }
+    ],
+    "primaryKeys": [],
+    "filters": {},
+    "hooks": {},
+    "indexes": [],
+    "uniques": [],
+    "checks": [],
+    "concurrencyCheckKeys": {},
+    "className": "TimestampedEntity",
+    "path": "./dist/database/timestamped.entity.js",
+    "abstract": true,
+    "constructorParams": [],
+    "toJsonParams": [],
+    "useCache": true,
+    "relations": []
+  },
+  "origin": "./dist/database/timestamped.entity.js",
+  "hash": "b5d13cfade7c64d5e6b01a2fa6a4321d",
+  "version": "5.2.4"
+}

@@ -4,6 +4,7 @@ import * as z from 'zod';
 import ms from 'ms';
 import dbConfig from './db.config';
 import envConfig from './env.config';
+import jwtConfig from './jwt.config';
 
 const checkIfStingIsmsFormat = (string) => {
   try {
@@ -21,7 +22,7 @@ const checkIfStingIsmsFormat = (string) => {
     ConfigModule.forRoot({
       isGlobal: true,
       cache: true,
-      load: [dbConfig, envConfig],
+      load: [dbConfig, envConfig, jwtConfig],
       validationSchema: (() => {
         const schema = z.object({
           MIKRO_ORM_USER: z.string().min(1),

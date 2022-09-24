@@ -72,12 +72,13 @@
     "abstract": false,
     "constructorParams": [],
     "toJsonParams": [],
+    "extends": "TimestampedEntity",
     "useCache": true,
     "compositePK": false,
     "relations": [],
     "collection": "technology"
   },
   "origin": "./dist/domain/technologies/technology.entity.js",
-  "hash": "7e4ea0929c07e717662b6e34fe65ed29",
+  "hash": "d765a7965c5f6b79e3241f967b57ab80",
   "version": "5.2.4"
 }
