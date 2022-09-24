@@ -5,6 +5,7 @@ import {
   Delete,
   Post,
   Res,
+  UseGuards,
 } from '@nestjs/common';
 import { AuthService } from '../../shared/users/services';
 import { LoginDto } from '../../shared/users/dto';
@@ -12,6 +13,7 @@ import { User } from '../../shared/users/db';
 import { Response } from 'express';
 import { CookieNames, JwtAtPayload } from '../../shared/types';
 import { AuthUser } from '../../shared/decorators';
+import { UserLoggedInGuard } from '../../shared/users/guards';
 
 @Controller('auth')
 export class AuthController {
@@ -42,6 +44,7 @@ export class AuthController {
       .cookie(CookieNames.RT_COOKIE, refreshToken, { httpOnly: true });
   }
 
+  @UseGuards(UserLoggedInGuard)
   @Delete()
   public async logout(@Res() res: Response, @AuthUser() { sub }: JwtAtPayload) {
     await this.authService.logout(sub);

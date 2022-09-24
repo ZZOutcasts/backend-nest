@@ -7,6 +7,7 @@ import { JwtConfig } from '../../config';
 import { OgmaModule } from '@ogma/nestjs-module';
 import { RefreshTokenEntity, User } from './db';
 import { UserLoggedInGuard } from './guards';
+import { AdminGuard } from './guards/admin.guard';
 
 @Module({
   imports: [
@@ -23,11 +24,25 @@ import { UserLoggedInGuard } from './guards';
     OgmaModule.forFeatures([
       AuthService,
       UserLoggedInGuard,
+      AdminGuard,
       TokensService,
       UsersService,
     ]),
   ],
-  providers: [UsersService, AuthService, UserLoggedInGuard, TokensService],
-  exports: [UsersService, AuthService, UserLoggedInGuard],
+  providers: [
+    UsersService,
+    AuthService,
+    UserLoggedInGuard,
+    AdminGuard,
+    TokensService,
+  ],
+  exports: [
+    UsersService,
+    AuthService,
+    UserLoggedInGuard,
+    AdminGuard,
+    TokensService,
+    OgmaModule,
+  ],
 })
 export class UsersModule {}
