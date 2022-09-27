@@ -2,6 +2,7 @@ import {
   Body,
   Controller,
   Delete,
+  ForbiddenException,
   Get,
   Param,
   ParseUUIDPipe,
@@ -23,7 +24,7 @@ import { UserLoggedInGuard } from '../../shared/users/guards';
 import { AuthRole } from '../../shared/users/types/auth-role.enum';
 import { AdminGuard } from '../../shared/users/guards/admin.guard';
 
-@Controller('users-api')
+@Controller('users')
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
@@ -50,7 +51,9 @@ export class UsersController {
     @Body() updateUserDto: UpdateUserDto,
     @AuthUser() authUser: JwtAtPayload,
   ) {
-    this.checkIsOwnerOrAdmin(userId, authUser);
+    const isOwnerOrAdmin = this.checkIsOwnerOrAdmin(userId, authUser);
+
+    if (!isOwnerOrAdmin) throw new ForbiddenException();
 
     return await this.usersService.updateUser(userId, updateUserDto);
   }
@@ -71,7 +74,8 @@ export class UsersController {
     @Body() changePasswordDto: ChangePasswordDto,
     @AuthUser() authUser: JwtAtPayload,
   ) {
-    this.checkIsOwner(userId, authUser);
+    const isOwner = this.checkIsOwner(userId, authUser);
+    if (!isOwner) throw new ForbiddenException();
     return await this.usersService.changePassword(userId, changePasswordDto);
   }
 
@@ -81,22 +85,20 @@ export class UsersController {
     @Param('id', ParseUUIDPipe) userId: string,
     @AuthUser() authUser: JwtAtPayload,
   ) {
-    this.checkIsOwner(userId, authUser);
+    const isOWner = this.checkIsOwner(userId, authUser);
+    if (!isOWner) throw new ForbiddenException();
     return await this.usersService.deleteUser(userId);
   }
 
-  private checkIsOwnerOrAdmin(
-    userId: string,
-    authUser: JwtAtPayload,
-  ): void | never {
-    const isOwnerOrAdmin =
-      authUser.sub === userId || authUser.authRole === AuthRole.Administrator;
-
-    if (!isOwnerOrAdmin) throw new UnauthorizedException();
+  private checkIsOwnerOrAdmin(userId: string, authUser: JwtAtPayload): boolean {
+    return this.checkIsOwner(userId, authUser) || this.checkIsAdmin(authUser);
   }
 
-  private checkIsOwner(userId: string, authUser: JwtAtPayload): void | never {
-    const isOwner = authUser.sub === userId;
-    if (!isOwner) throw new UnauthorizedException();
+  private checkIsAdmin(authUser: JwtAtPayload): boolean {
+    return authUser.authRole === AuthRole.Administrator;
+  }
+
+  private checkIsOwner(userId: string, authUser: JwtAtPayload): boolean {
+    return userId === authUser.sub;
   }
 }
