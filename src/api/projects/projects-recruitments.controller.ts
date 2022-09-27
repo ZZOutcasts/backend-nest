@@ -6,7 +6,9 @@ import {
   Post,
   Put,
 } from '@nestjs/common';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('Project Recruitments')
 @Controller('projects/:projectId/recruitments')
 export class ProjectsRecruitmentsController {
   @Get()

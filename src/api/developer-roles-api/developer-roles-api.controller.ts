@@ -13,7 +13,9 @@ import { DeveloperRoleService } from '../../domain/developer-roles/developer-rol
 import { CreateDeveloperRoleDto } from '../../domain/developer-roles/dto/create-developer-role.dto';
 import { UpdateDeveloperRoleDto } from '../../domain/developer-roles/dto/update-developer-role.dto';
 import { OgmaLogger, OgmaService } from '@ogma/nestjs-module';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('Developer Roles')
 @Controller('roles')
 export class DeveloperRolesApiController {
   constructor(

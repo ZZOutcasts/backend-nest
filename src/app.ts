@@ -5,6 +5,7 @@ import { ConfigService } from '@nestjs/config';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { OgmaService } from '@ogma/nestjs-module';
 import { patchNestjsSwagger } from '@anatine/zod-nestjs';
+import cookieParser from 'cookie-parser';
 
 export async function createApplication(): Promise<
   [INestApplication, ConfigService, OgmaService]
@@ -20,6 +21,7 @@ export async function createApplication(): Promise<
 
   SwaggerModule.setup('swagger', app, document);
 
+  app.use(cookieParser());
   app.useLogger(logger);
 
   app.enableShutdownHooks();

@@ -1,6 +1,5 @@
 import {
   Entity,
-  EntityDTO,
   EntityRepositoryType,
   Index,
   PrimaryKey,
@@ -9,6 +8,7 @@ import {
 } from '@mikro-orm/core';
 import * as z from 'zod';
 import { TechnologyRepository } from './technology.repository';
+import { TimestampedEntity } from '../../database';
 
 export const TechnologySchema = z.object({
   id: z.number(),
@@ -18,7 +18,7 @@ export const TechnologySchema = z.object({
 });
 
 @Entity({ customRepository: () => TechnologyRepository })
-export class Technology {
+export class Technology extends TimestampedEntity {
   [EntityRepositoryType]?: TechnologyRepository;
 
   @PrimaryKey()

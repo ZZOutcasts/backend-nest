@@ -5,7 +5,9 @@ import {
   NotImplementedException,
   Put,
 } from '@nestjs/common';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('Project Members')
 @Controller('projects/:projectId/members')
 export class ProjectsMembersController {
   @Get()

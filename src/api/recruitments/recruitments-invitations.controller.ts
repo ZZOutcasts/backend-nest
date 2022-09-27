@@ -5,7 +5,9 @@ import {
   NotImplementedException,
   Put,
 } from '@nestjs/common';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('Recruitment Invitations')
 @Controller('recruitments/:recruitmentId/invitations')
 export class RecruitmentsInvitationsController {
   @Get()

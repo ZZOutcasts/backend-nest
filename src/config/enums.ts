@@ -11,3 +11,10 @@ export enum EnvConfig {
   IsProd = 'envConfig.isProd',
   IsDev = 'envConfig.isDev',
 }
+
+export enum JwtConfig {
+  AtSecret = 'jwtConfig.atSecret',
+  AtExpiration = 'jwtConfig.atExpiration',
+  RtSecret = 'jwtConfig.rtSecret',
+  RtExpiration = 'jwtConfig.rtExpiration',
+}

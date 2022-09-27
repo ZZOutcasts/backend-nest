@@ -6,7 +6,9 @@ import {
   Patch,
   Post,
 } from '@nestjs/common';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('Recruitment Join-Requests')
 @Controller('recruitments/:recruitmentId/joinRequests')
 export class RecruitmentsJoinRequestsController {
   @Get()
