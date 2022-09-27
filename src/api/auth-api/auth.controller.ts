@@ -41,9 +41,13 @@ export class AuthController {
     const { accessToken, refreshToken } =
       await this.authService.getTokensForUser(user);
 
+    await this.authService.saveRtForUser(refreshToken, user);
+
     res
       .cookie(CookieNames.AT_COOKIE, accessToken, { httpOnly: true })
       .cookie(CookieNames.RT_COOKIE, refreshToken, { httpOnly: true });
+
+    res.status(201).send();
   }
 
   @UseGuards(UserLoggedInGuard)
@@ -51,5 +55,6 @@ export class AuthController {
   public async logout(@Res() res: Response, @AuthUser() { sub }: JwtAtPayload) {
     await this.authService.logout(sub);
     res.clearCookie(CookieNames.AT_COOKIE).clearCookie(CookieNames.RT_COOKIE);
+    res.status(204).send();
   }
 }

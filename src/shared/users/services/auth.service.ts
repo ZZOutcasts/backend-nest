@@ -1,7 +1,12 @@
 import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { OgmaLogger, OgmaService } from '@ogma/nestjs-module';
 import ms from 'ms';
-import { JwtRtPayload, RefreshToken, TokenPair } from '../../types';
+import {
+  JwtRtPayload,
+  RefreshToken,
+  TokenPair,
+  TokenPairWithPayload,
+} from '../../types';
 import { ConfigService } from '@nestjs/config';
 import { JwtConfig } from '../../../config';
 import { TokensService } from './tokens.service';
@@ -78,10 +83,11 @@ export class AuthService {
   public async exchangeRtForTokenPair(
     rt: JwtRtPayload,
     rawRt: RefreshToken,
-  ): Promise<TokenPair> {
+  ): Promise<TokenPairWithPayload> {
     const foundRt = await this.rtRepository.findByValue(rawRt).catch((err) => {
       this.logger.warn(err);
-      this.logger.warn(`Did not find refresh token from request: ${rt}`);
+      this.logger.warn(`Did not find refresh token from request`);
+      this.logger.warn(rt);
       throw new UnauthorizedException();
     });
 
@@ -92,7 +98,7 @@ export class AuthService {
       throw new UnauthorizedException();
     }
 
-    const { accessToken, refreshToken } =
+    const { accessToken, refreshToken, payload } =
       await this.tokensService.generateTokens(foundRt.user);
 
     await this.rtRepository.updateRefreshToken({
@@ -101,6 +107,15 @@ export class AuthService {
       validityPeriod: this.rtValidityPeriod,
     });
 
-    return { accessToken, refreshToken };
+    return { accessToken, refreshToken, payload };
+  }
+
+  public async saveRtForUser(rt: RefreshToken, user: User) {
+    const newRt = this.rtRepository.create({
+      value: rt,
+      user,
+      expiresAt: new Date(Date.now() + this.rtValidityPeriod),
+    });
+    await this.rtRepository.persistAndFlush(newRt);
   }
 }

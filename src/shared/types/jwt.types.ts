@@ -16,3 +16,12 @@ export interface TokenPair {
   accessToken: AccessToken;
   refreshToken: RefreshToken;
 }
+
+export interface AccessTokenWithPayload {
+  accessToken: AccessToken;
+  payload: JwtAtPayload;
+}
+
+export interface TokenPairWithPayload extends TokenPair {
+  payload: JwtAtPayload;
+}

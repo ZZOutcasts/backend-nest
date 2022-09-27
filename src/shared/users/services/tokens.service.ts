@@ -6,10 +6,12 @@ import { ConfigService } from '@nestjs/config';
 import { JwtConfig } from '../../../config';
 import {
   AccessToken,
+  AccessTokenWithPayload,
   JwtAtPayload,
   JwtRtPayload,
   RefreshToken,
   TokenPair,
+  TokenPairWithPayload,
 } from '../../types';
 
 @Injectable()
@@ -20,13 +22,13 @@ export class TokensService {
     @OgmaLogger(TokensService) private readonly logger: OgmaService,
   ) {}
 
-  public async generateTokens(user: User): Promise<TokenPair> {
-    const [accessToken, refreshToken] = await Promise.all([
+  public async generateTokens(user: User): Promise<TokenPairWithPayload> {
+    const [{ accessToken, payload }, refreshToken] = await Promise.all([
       this.generateAccessToken(user),
       this.generateRefreshToken(user),
     ]);
 
-    return { accessToken, refreshToken };
+    return { accessToken, refreshToken, payload };
   }
 
   public async checkToken<T extends JwtAtPayload | JwtRtPayload>(
@@ -35,16 +37,23 @@ export class TokensService {
     return await this.jwtService.verifyAsync<T>(token);
   }
 
-  private async generateAccessToken(user: User): Promise<AccessToken> {
+  private async generateAccessToken(
+    user: User,
+  ): Promise<AccessTokenWithPayload> {
     const jwtPayload: JwtAtPayload = {
       sub: user.id,
       authRole: user.authRole,
       verified: user.emailVerified,
     };
 
-    return await this.jwtService.signAsync(jwtPayload, {
+    this.logger.debug(user);
+    this.logger.debug(jwtPayload);
+
+    const accessToken = await this.jwtService.signAsync(jwtPayload, {
       expiresIn: this.configService.get(JwtConfig.AtExpiration),
     });
+
+    return { accessToken, payload: jwtPayload };
   }
 
   private async generateRefreshToken(user: User): Promise<RefreshToken> {

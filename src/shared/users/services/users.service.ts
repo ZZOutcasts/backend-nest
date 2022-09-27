@@ -21,24 +21,28 @@ export class UsersService {
   }
 
   public async deleteUser(id: string) {
-    return await this.usersRepository.nativeDelete({ id });
+    const user = await this.usersRepository.findById(id);
+    return await this.usersRepository.removeAndFlush(user);
   }
 
   public async updateUserRole(id: string, newRole: AuthRole) {
     const user = await this.usersRepository.findById(id);
     user.authRole = newRole;
+    user.onUpdate();
     await this.usersRepository.persistAndFlush(user);
   }
 
-  public async changePassword(id: string, { newPassword }: ChangePasswordDto) {
+  public async changePassword(id: string, { password }: ChangePasswordDto) {
     const user = await this.usersRepository.findById(id);
-    await user.changePassword(newPassword);
+    await user.changePassword(password);
+    user.onUpdate();
     await this.usersRepository.persistAndFlush(user);
   }
 
   public async updateUser(id: string, data: UpdateUserDto) {
     const user = await this.usersRepository.findById(id);
     this.usersRepository.assign(user, data);
+    user.onUpdate();
     return await this.usersRepository.persistAndFlush(user);
   }
 

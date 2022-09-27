@@ -1,6 +1,7 @@
 import {
   BeforeCreate,
   BeforeUpdate,
+  Cascade,
   Collection,
   Entity,
   EntityRepositoryType,
@@ -57,12 +58,15 @@ export class User extends TimestampedEntity {
   updatedAt = new Date();
 
   @Property()
-  lastLoggedInAt: Date;
+  lastLoggedInAt?: Date = null;
 
   @Property()
-  lastLogout: Date;
+  lastLogout?: Date = null;
 
-  @OneToMany(() => RefreshTokenEntity, (token) => token.user, { hidden: true })
+  @OneToMany(() => RefreshTokenEntity, (token) => token.user, {
+    hidden: true,
+    cascade: [Cascade.ALL],
+  })
   refreshTokens = new Collection<RefreshTokenEntity>(this);
 
   @Property()

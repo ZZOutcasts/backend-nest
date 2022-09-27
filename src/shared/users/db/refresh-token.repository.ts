@@ -23,6 +23,6 @@ export class RefreshTokenRepository extends EntityRepository<RefreshTokenEntity>
   }
 
   public async findByValue(value: RefreshToken): Promise<RefreshTokenEntity> {
-    return this.findOneOrFail({ value });
+    return this.findOneOrFail({ value }, { populate: true });
   }
 }

@@ -23,10 +23,16 @@ import { JwtAtPayload } from '../../shared/types';
 import { UserLoggedInGuard } from '../../shared/users/guards';
 import { AuthRole } from '../../shared/users/types/auth-role.enum';
 import { AdminGuard } from '../../shared/users/guards/admin.guard';
+import { ApiTags } from '@nestjs/swagger';
+import { OgmaLogger, OgmaService } from '@ogma/nestjs-module';
 
+@ApiTags('Users')
 @Controller('users')
 export class UsersController {
-  constructor(private readonly usersService: UsersService) {}
+  constructor(
+    @OgmaLogger(UsersController) private readonly logger: OgmaService,
+    private readonly usersService: UsersService,
+  ) {}
 
   @Post('')
   public async register(@Body() registerDto: RegisterDto) {
@@ -51,6 +57,7 @@ export class UsersController {
     @Body() updateUserDto: UpdateUserDto,
     @AuthUser() authUser: JwtAtPayload,
   ) {
+    this.logger.debug(authUser);
     const isOwnerOrAdmin = this.checkIsOwnerOrAdmin(userId, authUser);
 
     if (!isOwnerOrAdmin) throw new ForbiddenException();

@@ -23,8 +23,8 @@ export class UserLoggedInGuard implements CanActivate {
       .switchToHttp()
       .getRequest<Request & { user?: JwtAtPayload }>();
     const cookies = request.cookies;
-    const atRaw = cookies.get(CookieNames.AT_COOKIE);
-    const rtRaw = cookies.get(CookieNames.RT_COOKIE);
+    const atRaw = cookies[CookieNames.AT_COOKIE];
+    const rtRaw = cookies[CookieNames.RT_COOKIE];
 
     const atPayload = await this.tokensService
       .checkToken<JwtAtPayload>(atRaw)
@@ -48,7 +48,7 @@ export class UserLoggedInGuard implements CanActivate {
         throw new UnauthorizedException();
       });
 
-    const { accessToken, refreshToken } =
+    const { accessToken, refreshToken, payload } =
       await this.authService.exchangeRtForTokenPair(rtPayload, rtRaw);
 
     // set new cookies on response object
@@ -56,6 +56,9 @@ export class UserLoggedInGuard implements CanActivate {
     response
       .cookie(CookieNames.AT_COOKIE, accessToken, { httpOnly: true })
       .cookie(CookieNames.RT_COOKIE, refreshToken, { httpOnly: true });
+
+    // set new user on request
+    request.user = payload;
 
     return true;
   }

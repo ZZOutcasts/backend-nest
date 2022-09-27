@@ -10,5 +10,5 @@ export class UpdateUserDto extends createZodDto(
     authRole: true,
     lastLoggedInAt: true,
     createdAt: true,
-  }),
+  }).partial(),
 ) {}

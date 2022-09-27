@@ -7,6 +7,7 @@ import { DomainModule } from '../domain/domain.module';
 import { OgmaModule } from '@ogma/nestjs-module';
 import { TechnologiesApiController } from './technologies-api/technologies-api.controller';
 import { AuthApiModule } from './auth-api/auth-api.module';
+import { UsersApiModule } from './users-api/users-api.module';
 
 @Module({
   imports: [
@@ -16,6 +17,7 @@ import { AuthApiModule } from './auth-api/auth-api.module';
     TechnologiesApiModule,
     DomainModule,
     AuthApiModule,
+    UsersApiModule,
   ],
 })
 export class ApiModule {}

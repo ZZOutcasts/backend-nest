@@ -19,6 +19,7 @@ export class AppExceptionsFilter<T> extends BaseExceptionFilter {
     this.logger.debug(exception);
 
     if (exception instanceof ConstraintViolationException) {
+      this.logger.debug({ ...exception });
       exception = new ConflictException();
     }
     super.catch(exception, host);
