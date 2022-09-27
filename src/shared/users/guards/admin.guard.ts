@@ -1,4 +1,9 @@
-import { CanActivate, ExecutionContext, Injectable } from '@nestjs/common';
+import {
+  CanActivate,
+  ExecutionContext,
+  ForbiddenException,
+  Injectable,
+} from '@nestjs/common';
 import { Request } from 'express';
 import { JwtAtPayload } from '../../types';
 import { AuthRole } from '../types/auth-role.enum';
@@ -18,6 +23,10 @@ export class AdminGuard extends UserLoggedInGuard implements CanActivate {
       .getRequest<Request & { user: JwtAtPayload }>();
     const user = req.user;
 
-    return user.authRole === AuthRole.Administrator;
+    if (user.authRole !== AuthRole.Administrator) {
+      throw new ForbiddenException();
+    }
+
+    return true;
   }
 }
