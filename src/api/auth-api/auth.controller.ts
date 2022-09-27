@@ -14,7 +14,9 @@ import { Response } from 'express';
 import { CookieNames, JwtAtPayload } from '../../shared/types';
 import { AuthUser } from '../../shared/decorators';
 import { UserLoggedInGuard } from '../../shared/users/guards';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('Authentication')
 @Controller('auth')
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
