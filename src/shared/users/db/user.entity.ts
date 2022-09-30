@@ -1,4 +1,5 @@
 import {
+  BaseEntity,
   BeforeCreate,
   BeforeUpdate,
   Cascade,

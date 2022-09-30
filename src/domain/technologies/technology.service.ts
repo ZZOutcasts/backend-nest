@@ -2,8 +2,8 @@ import { Injectable } from '@nestjs/common';
 import { TechnologyRepository } from './technology.repository';
 import { OgmaLogger, OgmaService } from '@ogma/nestjs-module';
 import { Technology } from './technology.entity';
-import { CreateTechnologyDto } from './dto/create-technology.dto';
-import { UpdateTechnologyDto } from './dto/update-technology.dto';
+import { CreateTechnologyDto, UpdateTechnologyDto } from './dto';
+import { TechnologyId, TechnologyName } from './types';
 
 @Injectable()
 export class TechnologyService {
@@ -27,8 +27,12 @@ export class TechnologyService {
     return technology;
   }
 
-  public async getTechnologyByName(name: string) {
+  public async getTechnologyByName(name: TechnologyName) {
     return this.technologyRepository.findByName(name);
+  }
+
+  public async getTechnologiesByNames(names: TechnologyName[]) {
+    return this.technologyRepository.find({ name: { $in: names } });
   }
 
   public async searchTechnologiesByName(name: string) {
@@ -37,6 +41,10 @@ export class TechnologyService {
 
   public async getTechnologyById(id: number) {
     return this.technologyRepository.findById(id);
+  }
+
+  public async getTechnologiesByIds(ids: TechnologyId[]) {
+    return this.technologyRepository.find({ id: { $in: ids } });
   }
 
   public async deleteTechnology(id: number) {
