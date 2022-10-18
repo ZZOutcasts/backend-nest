@@ -7,10 +7,16 @@ import { OgmaService } from '@ogma/nestjs-module';
 import { patchNestjsSwagger } from '@anatine/zod-nestjs';
 import cookieParser from 'cookie-parser';
 
+const corsConfig = {
+  origin: process.env.FRONTEND_URL || 'http://localhost:3000', // TODO: add to example.docker.env
+  methods: 'GET,PUT,PATCH,POST,DELETE',
+}
+
+
 export async function createApplication(): Promise<
   [INestApplication, ConfigService, OgmaService]
 > {
-  const app = await NestFactory.create(AppModule, { bufferLogs: true });
+  const app = await NestFactory.create(AppModule, { bufferLogs: true, cors:corsConfig });
   const config = app.get<ConfigService>(ConfigService);
   const logger = app.get<OgmaService>(OgmaService);
 
