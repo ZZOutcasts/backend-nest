@@ -12,7 +12,6 @@ const corsConfig = {
   methods: 'GET,PUT,PATCH,POST,DELETE',
 }
 
-
 export async function createApplication(): Promise<
   [INestApplication, ConfigService, OgmaService]
 > {
