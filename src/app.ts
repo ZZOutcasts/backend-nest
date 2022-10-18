@@ -8,7 +8,7 @@ import { patchNestjsSwagger } from '@anatine/zod-nestjs';
 import cookieParser from 'cookie-parser';
 
 const corsConfig = {
-  origin: process.env.FRONTEND_URL || 'http://localhost:3000', // TODO: add to example.docker.env
+  origin: process.env.FRONTEND_URL || 'http://localhost:3000', 
   methods: 'GET,PUT,PATCH,POST,DELETE',
 }
 
