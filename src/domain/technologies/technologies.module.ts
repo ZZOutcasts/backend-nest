@@ -3,6 +3,7 @@ import { TechnologyService } from './technology.service';
 import { OgmaModule } from '@ogma/nestjs-module';
 import { Technology } from './technology.entity';
 import { MikroOrmModule } from '@mikro-orm/nestjs';
+import { HydrateTechnologiesPipe } from './hydrate-technologies.pipe';
 
 @Module({
   imports: [
@@ -11,7 +12,7 @@ import { MikroOrmModule } from '@mikro-orm/nestjs';
       entities: [Technology],
     }),
   ],
-  providers: [TechnologyService],
-  exports: [TechnologyService],
+  providers: [TechnologyService, HydrateTechnologiesPipe],
+  exports: [TechnologyService, HydrateTechnologiesPipe],
 })
 export class TechnologiesModule {}

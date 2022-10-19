@@ -10,7 +10,7 @@ import {
   Property,
   Unique,
 } from '@mikro-orm/core';
-import { TimestampedEntity } from '../../database';
+import { SoftDeleteTimestampedEntity, WithSoftDelete } from '../../database';
 import { ProjectRepository } from './project.repository';
 import {
   Technology,
@@ -36,8 +36,9 @@ export const ProjectSchema = z.object({
   members: z.array(ProjectMemberSchema),
 });
 
+@WithSoftDelete()
 @Entity({ customRepository: () => ProjectRepository })
-export class Project extends TimestampedEntity {
+export class Project extends SoftDeleteTimestampedEntity {
   [EntityRepositoryType]?: ProjectRepository;
 
   @PrimaryKey()

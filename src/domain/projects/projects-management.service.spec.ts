@@ -1,5 +1,5 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { ProjectsService } from './projects.service';
+import { ProjectsManagementService } from './projects-management.service';
 import { createMock } from '@golevelup/ts-jest';
 import { ProjectRepository } from './project.repository';
 import { ProjectMemberRepository } from './project-member.repository';
@@ -18,8 +18,8 @@ function createTestUser(username: string, authRole: AuthRole): User {
   return user;
 }
 
-describe('ProjectsService', () => {
-  let service: ProjectsService;
+describe('ProjectsManagementService', () => {
+  let service: ProjectsManagementService;
   let module: TestingModule;
   let projectsRepository: ProjectRepository;
   let projectMemberRepository: ProjectMemberRepository;
@@ -27,7 +27,7 @@ describe('ProjectsService', () => {
   beforeEach(async () => {
     module = await Test.createTestingModule({
       providers: [
-        ProjectsService,
+        ProjectsManagementService,
         {
           provide: getRepositoryToken(ProjectRepository),
           useValue: jest.fn(),
@@ -41,7 +41,7 @@ describe('ProjectsService', () => {
       .useMocker(() => createMock())
       .compile();
 
-    service = module.get<ProjectsService>(ProjectsService);
+    service = module.get<ProjectsManagementService>(ProjectsManagementService);
     projectsRepository = module.get<ProjectRepository>(ProjectRepository);
     projectMemberRepository = module.get<ProjectMemberRepository>(
       ProjectMemberRepository,

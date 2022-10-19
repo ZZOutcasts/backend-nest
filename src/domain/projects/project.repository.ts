@@ -21,4 +21,26 @@ export class ProjectRepository extends EntityRepository<Project> {
   public async getProjectsByRoles(roles: DeveloperRole[]): Promise<Project[]> {
     return this.find({ roles: { $in: roles } });
   }
+
+  public async getProjectById(id: number): Promise<Project> {
+    return this.findOneOrFail({ id });
+  }
+
+  public async getDeletedProjects(): Promise<Project[]> {
+    return this.find(
+      {},
+      {
+        filters: {
+          softDelete: { getOnlyDeleted: true },
+        },
+      },
+    );
+  }
+
+  public async getDeletedProjectById(id: number): Promise<Project> {
+    return this.findOneOrFail(
+      { id },
+      { filters: { softDelete: { includeDeleted: true } } },
+    );
+  }
 }
