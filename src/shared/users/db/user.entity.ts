@@ -1,5 +1,4 @@
 import {
-  BaseEntity,
   BeforeCreate,
   BeforeUpdate,
   Cascade,
@@ -16,10 +15,10 @@ import { UserRepository } from './user.repository';
 import { v4 } from 'uuid';
 import argon from 'argon2';
 import slug from 'slug';
-import { AuthRole } from '../types/auth-role.enum';
+import { AuthRole } from '@shared/users/types';
 import { RefreshTokenEntity } from './refresh-token.entity';
 import z from 'zod';
-import { TimestampedEntity } from '../../../database';
+import { TimestampedEntity } from '@database';
 
 export const UserSchema = z.object({
   id: z.string().uuid(),

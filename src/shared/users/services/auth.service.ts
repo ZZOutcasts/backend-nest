@@ -8,7 +8,7 @@ import {
   TokenPairWithPayload,
 } from '../../types';
 import { ConfigService } from '@nestjs/config';
-import { JwtConfig } from '../../../config';
+import { JwtConfig } from '@config/enums';
 import { TokensService } from './tokens.service';
 import { RefreshTokenRepository, User, UserRepository } from '../db';
 import { LoginWithEmailDto, LoginWithUsernameDto } from '../dto';

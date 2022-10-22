@@ -10,7 +10,7 @@ import {
   Property,
   Unique,
 } from '@mikro-orm/core';
-import { SoftDeleteTimestampedEntity, WithSoftDelete } from '../../database';
+import { SoftDeleteTimestampedEntity, WithSoftDelete } from '@database';
 import { ProjectRepository } from './project.repository';
 import {
   Technology,

@@ -6,7 +6,7 @@ import {
 } from '@nestjs/common';
 import { Request } from 'express';
 import { JwtAtPayload } from '../../types';
-import { AuthRole } from '../types/auth-role.enum';
+import { AuthRole } from '../types';
 import { UserLoggedInGuard } from './user-logged-in.guard';
 
 @Injectable()

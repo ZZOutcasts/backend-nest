@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
 import { TechnologiesApiController } from './technologies-api.controller';
-import { TechnologiesModule } from '../../domain/technologies/technologies.module';
+import { TechnologiesModule } from '@domain/technologies/technologies.module';
 import { OgmaModule } from '@ogma/nestjs-module';
 
 @Module({

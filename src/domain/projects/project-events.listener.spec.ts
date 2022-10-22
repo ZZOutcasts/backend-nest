@@ -1,7 +1,7 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { ProjectEventsListener } from './project-events.listener';
 
-describe('ProjectEventsListenerService', () => {
+describe.skip('ProjectEventsListenerService', () => {
   let service: ProjectEventsListener;
 
   beforeEach(async () => {

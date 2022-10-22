@@ -14,25 +14,25 @@ import {
   UseGuards,
 } from '@nestjs/common';
 import { ApiBody, ApiTags } from '@nestjs/swagger';
-import { ProjectsManagementService } from '../../domain/projects/projects-management.service';
+import { ProjectsManagementService } from '@domain/projects/projects-management.service';
 import { OgmaLogger, OgmaService } from '@ogma/nestjs-module';
-import { TechnologyName } from '../../domain/technologies/types';
-import { DeveloperRoleName } from '../../domain/developer-roles/types';
+import { TechnologyName } from '@domain/technologies/types';
+import { DeveloperRoleName } from '@domain/developer-roles/types';
 import {
   CreateProjectDto,
   CreateProjectHydratedDto,
   UpdateProjectCapacityDto,
   UpdateProjectStatusDto,
-} from '../../domain/projects/dto';
-import { AuthUser } from '../../shared/decorators';
-import { User } from '../../shared/users/db';
-import { HydrateAuthUserPipe } from '../../shared/users/hydrate-auth-user.pipe';
-import { HydrateDeveloperRolesPipe } from '../../domain/developer-roles/hydrate-developer-roles.pipe';
-import { HydrateTechnologiesPipe } from '../../domain/technologies/hydrate-technologies.pipe';
-import { Project } from '../../domain/projects/project.entity';
-import { ApiPaginatedResponse, PaginatedResponseDto } from '../../shared/types';
-import { UserLoggedInGuard } from '../../shared/users/guards';
-import { ProjectsQueryService } from '../../domain/projects/projects-query.service';
+} from '@domain/projects/dto';
+import { AuthUser } from '@shared/decorators';
+import { User } from '@shared/users/db';
+import { HydrateAuthUserPipe } from '@shared/users/hydrate-auth-user.pipe';
+import { HydrateDeveloperRolesPipe } from '@domain/developer-roles/hydrate-developer-roles.pipe';
+import { HydrateTechnologiesPipe } from '@domain/technologies/hydrate-technologies.pipe';
+import { Project } from '@domain/projects/project.entity';
+import { ApiPaginatedResponse, PaginatedResponseDto } from '@shared/types';
+import { UserLoggedInGuard } from '@shared/users/guards';
+import { ProjectsQueryService } from '@domain/projects/projects-query.service';
 
 @ApiTags('Projects')
 @Controller('projects')

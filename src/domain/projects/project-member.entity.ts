@@ -6,10 +6,10 @@ import {
   PrimaryKey,
   Property,
 } from '@mikro-orm/core';
-import { TimestampedEntity } from '../../database';
+import { TimestampedEntity } from '@database';
 import { ProjectMemberRepository } from './project-member.repository';
 import { Project } from './project.entity';
-import { User } from '../../shared/users/db';
+import { User } from '@shared/users/db';
 import { Technology } from '../technologies/technology.entity';
 import { DeveloperRole } from '../developer-roles/developer-role.entity';
 import z from 'zod';

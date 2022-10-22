@@ -9,11 +9,11 @@ import {
   Put,
   Query,
 } from '@nestjs/common';
-import { DeveloperRoleService } from '../../domain/developer-roles/developer-role.service';
+import { DeveloperRoleService } from '@domain/developer-roles/developer-role.service';
 import {
   CreateDeveloperRoleDto,
   UpdateDeveloperRoleDto,
-} from '../../domain/developer-roles/dto';
+} from '@domain/developer-roles/dto';
 import { OgmaLogger, OgmaService } from '@ogma/nestjs-module';
 import { ApiTags } from '@nestjs/swagger';
 

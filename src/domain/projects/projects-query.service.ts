@@ -6,7 +6,7 @@ import {
   IncludeDeletedQueryParamsInterface,
   PaginatedResponseDto,
   PaginationQueryParamsInterface,
-} from '../../shared/types';
+} from '@shared/types';
 import { Project } from './project.entity';
 import { ProjectEvents, ProjectViewedEvent } from './events';
 import { TechnologyName } from '../technologies/types';

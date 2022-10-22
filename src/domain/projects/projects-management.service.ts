@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { OgmaLogger, OgmaService } from '@ogma/nestjs-module';
 import { ProjectRepository } from './project.repository';
 import { ProjectMemberRepository } from './project-member.repository';
-import { User } from '../../shared/users/db';
+import { User } from '@shared/users/db';
 import { CreateProjectHydratedDto } from './dto';
 import { ProjectStatus } from './project-status.enum';
 

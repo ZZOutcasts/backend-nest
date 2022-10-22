@@ -9,7 +9,7 @@ import {
 } from '@mikro-orm/core';
 import { User } from './user.entity';
 import { RefreshTokenRepository } from './refresh-token.repository';
-import { TimestampedEntity } from '../../../database';
+import { TimestampedEntity } from '@database';
 
 @Entity({ customRepository: () => RefreshTokenRepository })
 export class RefreshTokenEntity extends TimestampedEntity {

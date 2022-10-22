@@ -3,16 +3,14 @@ import { User } from '../db';
 import { JwtService } from '@nestjs/jwt';
 import { OgmaLogger, OgmaService } from '@ogma/nestjs-module';
 import { ConfigService } from '@nestjs/config';
-import { JwtConfig } from '../../../config';
+import { JwtConfig } from '@config/enums';
 import {
-  AccessToken,
   AccessTokenWithPayload,
   JwtAtPayload,
   JwtRtPayload,
   RefreshToken,
-  TokenPair,
   TokenPairWithPayload,
-} from '../../types';
+} from '@shared/types';
 
 @Injectable()
 export class TokensService {

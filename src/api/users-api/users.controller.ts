@@ -8,21 +8,20 @@ import {
   ParseUUIDPipe,
   Post,
   Put,
-  UnauthorizedException,
   UseGuards,
 } from '@nestjs/common';
-import { UsersService } from '../../shared/users/services';
+import { UsersService } from '@shared/users/services';
 import {
   ChangeAuthRoleDto,
   ChangePasswordDto,
   RegisterDto,
   UpdateUserDto,
-} from '../../shared/users/dto';
-import { AuthUser } from '../../shared/decorators';
-import { JwtAtPayload } from '../../shared/types';
-import { UserLoggedInGuard } from '../../shared/users/guards';
-import { AuthRole } from '../../shared/users/types/auth-role.enum';
-import { AdminGuard } from '../../shared/users/guards/admin.guard';
+} from '@shared/users/dto';
+import { AuthUser } from '@shared/decorators';
+import { JwtAtPayload } from '@shared/types';
+import { UserLoggedInGuard } from '@shared/users/guards';
+import { AuthRole } from '@shared/users/types/auth-role.enum';
+import { AdminGuard } from '@shared/users/guards/admin.guard';
 import { ApiTags } from '@nestjs/swagger';
 import { OgmaLogger, OgmaService } from '@ogma/nestjs-module';
 
