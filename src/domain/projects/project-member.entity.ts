@@ -6,7 +6,7 @@ import {
   PrimaryKey,
   Property,
 } from '@mikro-orm/core';
-import { TimestampedEntity } from '@database';
+import { TimestampedEntity } from '@database/index';
 import { ProjectMemberRepository } from './project-member.repository';
 import { Project } from './project.entity';
 import { User } from '@shared/users/db';

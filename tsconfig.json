@@ -22,8 +22,8 @@
       "@domain/*": ["src/domain/*"],
       "@api/*": ["src/api/*"],
       "@shared/*": ["src/shared/*"],
-      "@config/*": ["src/config/*"],
-      "@database": ["src/database/index.ts"]
+      "@database/*": ["src/database/*"],
+      "@config/*": ["src/config/*"]
     }
   }
 }

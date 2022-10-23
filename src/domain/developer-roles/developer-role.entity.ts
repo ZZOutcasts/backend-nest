@@ -10,7 +10,7 @@ import {
 } from '@mikro-orm/core';
 import * as z from 'zod';
 import { DeveloperRoleRepository } from './developer-role.repository';
-import { TimestampedEntity } from '@database';
+import { TimestampedEntity } from '@database/index';
 import { Project } from '../projects/project.entity';
 import { ProjectMember } from '../projects/project-member.entity';
 import { DeveloperRoleId, DeveloperRoleName } from './types';
