@@ -10,6 +10,7 @@ import { ExpressParser } from '@ogma/platform-express';
 import { APP_FILTER, APP_INTERCEPTOR, APP_PIPE } from '@nestjs/core';
 import { AppExceptionsFilter } from './shared/filters';
 import { ZodValidationPipe } from '@anatine/zod-nestjs';
+import { EventEmitterModule } from '@nestjs/event-emitter';
 
 @Module({
   imports: [
@@ -17,6 +18,7 @@ import { ZodValidationPipe } from '@anatine/zod-nestjs';
     AppConfigModule,
     ApiModule,
     DatabaseModule,
+    EventEmitterModule.forRoot(),
     OgmaModule.forRootAsync({
       inject: [ConfigService],
       useFactory: (config: ConfigService) => ({

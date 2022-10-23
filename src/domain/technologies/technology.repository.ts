@@ -1,12 +1,13 @@
 import { EntityRepository } from '@mikro-orm/postgresql';
 import { Technology } from './technology.entity';
+import { TechnologyId, TechnologyName } from './types';
 
 export class TechnologyRepository extends EntityRepository<Technology> {
-  public async findById(id: number): Promise<Technology> {
+  public async findById(id: TechnologyId): Promise<Technology> {
     return this.findOneOrFail({ id });
   }
 
-  public async findByName(name: string): Promise<Technology> {
+  public async findByName(name: TechnologyName): Promise<Technology> {
     return this.findOneOrFail({ name });
   }
 

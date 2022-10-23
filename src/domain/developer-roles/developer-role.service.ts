@@ -1,9 +1,9 @@
 import { Injectable } from '@nestjs/common';
 import { OgmaLogger, OgmaService } from '@ogma/nestjs-module';
 import { DeveloperRoleRepository } from './developer-role.repository';
-import { CreateDeveloperRoleDto } from './dto/create-developer-role.dto';
-import { UpdateDeveloperRoleDto } from './dto/update-developer-role.dto';
+import { CreateDeveloperRoleDto, UpdateDeveloperRoleDto } from './dto';
 import { DeveloperRole } from './developer-role.entity';
+import { DeveloperRoleId, DeveloperRoleName } from './types';
 
 @Injectable()
 export class DeveloperRoleService {
@@ -27,16 +27,24 @@ export class DeveloperRoleService {
     return developerRole;
   }
 
-  public async getDeveloperRoleByName(name: string) {
+  public async getDeveloperRoleByName(name: DeveloperRoleName) {
     return this.developerRoleRepository.findByName(name);
+  }
+
+  public async getDeveloperRolesByNames(names: DeveloperRoleName[]) {
+    return this.developerRoleRepository.find({ name: { $in: names } });
   }
 
   public async searchDeveloperRolesByName(name: string) {
     return this.developerRoleRepository.searchByName(name);
   }
 
-  public async getDeveloperRoleById(id: number) {
+  public async getDeveloperRoleById(id: DeveloperRoleId) {
     return this.developerRoleRepository.findById(id);
+  }
+
+  public async getDeveloperRolesByIds(ids: DeveloperRoleId[]) {
+    return this.developerRoleRepository.find({ id: { $in: ids } });
   }
 
   public async deleteDeveloperRole(id: number) {

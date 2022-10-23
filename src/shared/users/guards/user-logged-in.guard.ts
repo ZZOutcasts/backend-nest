@@ -7,8 +7,7 @@ import {
 import { Request, Response } from 'express';
 import { CookieNames, JwtAtPayload, JwtRtPayload } from '../../types';
 import { OgmaLogger, OgmaService } from '@ogma/nestjs-module';
-import { AuthService } from '../services';
-import { TokensService } from '../services';
+import { AuthService, TokensService } from '../services';
 
 @Injectable()
 export class UserLoggedInGuard implements CanActivate {

@@ -1,14 +1,19 @@
 import {
+  Collection,
   Entity,
   EntityRepositoryType,
   Index,
+  ManyToMany,
   PrimaryKey,
   Property,
   Unique,
 } from '@mikro-orm/core';
 import * as z from 'zod';
 import { DeveloperRoleRepository } from './developer-role.repository';
-import { TimestampedEntity } from '../../database';
+import { TimestampedEntity } from '@database/index';
+import { Project } from '../projects/project.entity';
+import { ProjectMember } from '../projects/project-member.entity';
+import { DeveloperRoleId, DeveloperRoleName } from './types';
 
 export const DeveloperRoleSchema = z.object({
   id: z.number(),
@@ -22,16 +27,22 @@ export class DeveloperRole extends TimestampedEntity {
   [EntityRepositoryType]?: DeveloperRoleRepository;
 
   @PrimaryKey()
-  id: number;
+  id: DeveloperRoleId;
 
   @Index()
   @Unique()
   @Property()
-  name: string;
+  name: DeveloperRoleName;
 
   @Property()
   icon: string;
 
   @Property()
   description: string;
+
+  @ManyToMany(() => Project, (project) => project.roles)
+  projects = new Collection<Project>(this);
+
+  @ManyToMany(() => ProjectMember, (member) => member.roles)
+  projectMembers = new Collection<ProjectMember>(this);
 }

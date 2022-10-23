@@ -7,13 +7,13 @@ import {
   Res,
   UseGuards,
 } from '@nestjs/common';
-import { AuthService } from '../../shared/users/services';
-import { LoginDto } from '../../shared/users/dto';
-import { User } from '../../shared/users/db';
+import { AuthService } from '@shared/users/services';
+import { LoginDto } from '@shared/users/dto';
+import { User } from '@shared/users/db';
 import { Response } from 'express';
-import { CookieNames, JwtAtPayload } from '../../shared/types';
-import { AuthUser } from '../../shared/decorators';
-import { UserLoggedInGuard } from '../../shared/users/guards';
+import { CookieNames, JwtAtPayload } from '@shared/types';
+import { AuthUser } from '@shared/decorators';
+import { UserLoggedInGuard } from '@shared/users/guards';
 import { ApiTags } from '@nestjs/swagger';
 
 @ApiTags('Authentication')

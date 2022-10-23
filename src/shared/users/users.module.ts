@@ -8,6 +8,7 @@ import { OgmaModule } from '@ogma/nestjs-module';
 import { RefreshTokenEntity, User } from './db';
 import { UserLoggedInGuard } from './guards';
 import { AdminGuard } from './guards/admin.guard';
+import { HydrateAuthUserPipe } from './hydrate-auth-user.pipe';
 
 @Module({
   imports: [
@@ -35,6 +36,7 @@ import { AdminGuard } from './guards/admin.guard';
     UserLoggedInGuard,
     AdminGuard,
     TokensService,
+    HydrateAuthUserPipe,
   ],
   exports: [
     UsersService,
@@ -43,6 +45,7 @@ import { AdminGuard } from './guards/admin.guard';
     AdminGuard,
     TokensService,
     OgmaModule,
+    HydrateAuthUserPipe,
   ],
 })
 export class UsersModule {}
